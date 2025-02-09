@@ -10,12 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const inputText = nameUser.value.trim();
         const inputCount = countNumber.value;
-        const initialAmountValue = initialAmount.value;
+        const initialAmountValue = initialAmount;
 
-        if (!inputText || !inputCount || !initialAmountValue) {
-            alert('Por favor, complete todos los campos');
-            return;
-        }
+        
 
         const createLi = document.createElement('li');
         const createSpan = document.createElement('span');
@@ -23,19 +20,27 @@ document.addEventListener('DOMContentLoaded', () => {
         createSpan.textContent = `Nombre: ${inputText}, Cuenta: ${inputCount}, Monto Inicial: ${initialAmountValue}`;
 
         const editBtn = document.createElement('button');
-        editBtn.textContent = 'Editar';
+        editBtn.textContent = 'Edit';
         editBtn.classList.add('edit-btn');
         editBtn.addEventListener('click', editAccount);
 
         const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'Eliminar';
+        deleteBtn.textContent = 'Delete';
         deleteBtn.classList.add('delete-btn');
-        deleteBtn.addEventListener('click', deleteAccount);
+        deleteBtn.onclick = () => deleteAccount(createLi);
+
+
+        const history = JSON.parse(localStorage.getItem('history')) || [];
+        history.push({ name: inputText, count: inputCount, initialAmount: initialAmountValue });
+        localStorage.setItem('history', JSON.stringify(history));
+        console.log(history);
 
         createLi.appendChild(createSpan);
+        
         createLi.appendChild(editBtn);
         createLi.appendChild(deleteBtn);
         listHistory.appendChild(createLi);
+
 
         nameUser.value = '';
         countNumber.value = '';
@@ -64,11 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
         span.textContent = `Nombre: ${newName}, Cuenta: ${newCount}, Monto Inicial: ${newInitialAmount}`;
     };
 
-    const deleteAccount = (event) => {
-        const li = event.target.parentElement;
-        listHistory.removeChild(li);
+    const deleteAccount = (createLi) => {
+     listHistory.removeChild(createLi)        
     };
 
-    accountForm.addEventListener('submit', createBankAccount);
+    accountForm.addEventListener('click', createBankAccount);
     
 });
+
