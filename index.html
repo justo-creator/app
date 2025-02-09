@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank</title>
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="title">Banking System</h1>
+        <div class="items">
+            <a href="index.html" class="active">Home</a>
+            <a href="deposit.html">Deposit</a>
+            <a href="withdraw.html">Withdraw</a>
+            <a href="transfer.html">Transfer</a>
+            <a href="account_statement.html">Account Statement</a>
+        </div>
+    </header>
+
+    <h2>Create a Count</h2>
+
+    <form>
+
+        <section class="cap1">
+
+            <div class="form-group">
+                <label for="name_user">Name User:</label>
+                <input type="text" id="nameUser" name="name_user" >
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="count_number">Count Number:</label>
+                <input type="number" id="countNumber" name="count_number" min="0">
+                <span class="error-message"></span>
+            </div>
+
+        </section>
+    
+   <section class="cap2">
+
+       <div class="form-group">
+           <label for="initial_mount">Initial Mount</label>
+           <input type="number" id="initialAmountt" name="initial_mount" min="0">
+       </div>
+       
+       <div class="form-group">
+           <button type="submit" class="submit-btn" id="accountForm">Create Count</button>
+       </div>
+
+   </section>
+    </form>
+
+<h2>History</h2>
+
+<main class="history">
+    <ul id='listHistory'></ul>
+</main>
+   
+<script src="script.js"></script>
+</body>
+</html>
